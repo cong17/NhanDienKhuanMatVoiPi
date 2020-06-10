@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Nhận dạng khuân mặt</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <style>
+    .box {
+      position: relative;
+      width: 280px;
+      height: 400px;
+      margin: 20px 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .box .box_img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      clip-path: circle(400px at center 100px);
+      transition: 0.4s;
+    }
+
+    .box:hover .box_img {
+      clip-path: circle(80px at center 100px);
+    }
+
+    .box .box_img img {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .box:hover .box_img img {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .box .content {
+      position: absolute;
+      width: 100%;
+      height: 55%;
+      left: 0;
+      bottom: 0;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .box .content a {
+      display: inline-block;
+      width: 100px;
+      height: 25px;
+      padding: 5px;
+      text-align: center;
+      background: #333;
+      text-decoration: none;
+      color: white;
+      border-radius: 5px;
+      transition: 0.4s;
+    }
+
+    .box .content a:hover {
+      background-color: rgb(250, 250, 250);
+      color: #000;
+    }
+
+    .box .content h2,
+    .box .content p,
+    .box .content a {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 0.4s;
+    }
+
+    .box:hover .content h2 {
+      opacity: 1;
+      transform: translateY(0px);
+      transition-delay: 0.4s;
+    }
+
+    .box:hover .content p {
+      opacity: 1;
+      transform: translateY(0px);
+      transition-delay: 0.4s;
+    }
+
+    .box:hover .content a {
+      opacity: 1;
+      transform: translateY(0px);
+      transition-delay: 0.4s;
+    }
+  </style>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4 text-center">Đề tài nhận diện khuân mặt</h1>
+            <div class="card text-center">
+              <div class="card-header">
+                Các chức năng
+              </div>
+              <div class="card-body">
+                <a href="video_feed" target="_blank" class="btn btn-success btn-lg" role="button">Đọc từ camera</a>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#upload">
+                  Upload ảnh
+                </button>
+                <a href="rs" target="_blank" class="btn btn-warning btn-lg" role="button">Xóa thời gian</a>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 w-100 ml-3">
+        <div class="card text-center">
+          <div class="card-header">
+            Danh sách
+          </div>
+          <div class="card-body">
+            <table class="table w-80">
+              <thead class="thead-dark text-center">
+                <tr>
+                  <th>Họ và tên</th>
+                  <th>Mã Sinh viên</th>
+                  <th>Lớp</th>
+                  <th>Điểm danh lúc</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {% for row in value %}
+                <tr>
+                  <td scope="row">{{row[0]}}</td>
+                  <td>{{row[1]}}</td>
+                  <td>{{row[2]}}</td>
+                  <td>{{row[3]}}</td>
+                </tr>
+                {% endfor %}
+
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foooter">
+      <div class="card text-center mt-5">
+        <div class="card-header">
+          Bộ môn tin học công nghiệp
+        </div>
+        <div class="card-body">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+            Nhóm thực hiện
+          </button>
+        </div>
+        <div class="card-footer text-muted">
+          Thái Nguyên 2020
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="min-width: 70vw;min-height: 60vh;" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Thành viên nhóm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="box">
+              <div class="box_img">
+                <img src="/static/photos/cong.jpg" alt="">
+              </div>
+              <div class="content">
+                <h2>Vũ Mạnh Công</h2>
+                <p>Công đẹp trai vô dịch hệ mặt trời</p>
+                <a href="https://congis.me">Liên hệ</a>
+              </div>
+            </div>
+            <div class="box">
+              <div class="box_img">
+                <img src="/static/photos/tra.JPEG" alt="">
+              </div>
+              <div class="content">
+                <h2>Nguyễn Thị Thu Trà</h2>
+                <p>18 tuổi không ai theo đuổi</p>
+                <a href="https://www.facebook.com/tratrum.fx" target="_blank">Liên hệ</a>
+              </div>
+            </div>
+            <div class="box">
+              <div class="box_img">
+                <img src="/static/photos/duoc.jpg" alt="">
+              </div>
+              <div class="content">
+                <h2>Trần Bá Được</h2>
+                <p>Đệp trai học giỏi, thầy cồ quý mến , bạn bè yêu quý</p>
+                <a href="https://www.facebook.com/profile.php?id=100007817508297" target="_blank">Liên hệ</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="uploadLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadLabel">Chức năng nhận diện ảnh</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="imageUploadForm" action="/uploaded" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" />
+            <input type="submit" value="Upload">
+          </form>
+        </div>
+        <div class="modal-body">
+          <span class="upload-success"></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="static/js/jquery-3.5.1.min.js"></script>
+  <script src="static/js/bootstrap.min.js"></script>
+  <script>
+    $('#imageUploadForm').on('submit', (function (e) {
+      e.preventDefault();
+      var formData = new FormData(this);
+
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          console.log("success");
+          $(".upload-success").text(data);
+        },
+        error: function (data) {
+          console.log("error");
+          $(".upload-success").text(data);
+        }
+      });
+    }));
+  </script>
+</body>
+
+</html>
