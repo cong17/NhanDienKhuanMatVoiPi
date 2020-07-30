@@ -169,13 +169,10 @@ def readFrame(frameCount):
                     
                     matchedIdxs = [i for (i, b) in enumerate(matches) if b]
                     counts = {}
-
-                    
+                 
                     for i in matchedIdxs:
                         name = data["names"][i]
                         counts[name] = counts.get(name, 0) + 1
-
-                    
                     name = max(counts, key=counts.get)
 
                 # cap nhat ten vao danh sach 
@@ -274,12 +271,13 @@ if __name__ == '__main__':
 
 
     #start Thong bao san san
-    pathMusix = "sounds/ready.mp3"
-    t = threading.Thread(target=play_sound, args=(pathMusix, ))
-    t.deamon = True
-    t.start()
-    time.sleep(2.0)
+    # pathMusix = "sounds/ready.mp3"
+    # t = threading.Thread(target=play_sound, args=(pathMusix, ))
+    # t.deamon = True
+    # t.start()
+    # time.sleep(2.0)
 
     # start the flask app
-    app.run()
+    # app.run()
+    app.run(host= '0.0.0.0')
 
